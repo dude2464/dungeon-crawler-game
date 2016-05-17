@@ -2,11 +2,6 @@
 #include "Cell.h"
 
 linkedList::linkedList(Cell* ce){
-	//if(l != NULL){
-//		this->size = l->getSize() + 1;
-//	} else {
-//		this->size = 1;
-//	}
 
 	this->c = ce;
 	this->next = NULL;

@@ -1,8 +1,6 @@
 #ifndef __CELL_H__
 #define __CELL_H__
 
-//#include "character.h"
-//#include "Floor.h"
 
 class character;
 

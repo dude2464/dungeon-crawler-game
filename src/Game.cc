@@ -54,12 +54,9 @@ bool isDir(string dir) {
 }
 
 string Game::startGame(string file){
-	//currentFloor = 1;
 	bool playing = true;
 	
 	string result;
-
-
 
 	while(playing){
 		if(file == "defaultFloor.txt"){
@@ -85,10 +82,6 @@ string Game::startGame(string file){
 }
 
 string Game::playGame1(string file) {
-	//f->constructFloor("defaultFloor.txt");
-//	enemies = f->constructFloorSpecial("textFile2.txt", pc);
-//	int n = enemies.size();
-//	this->numEnemies = enemies.size();
 	cout << "get ehre" << endl;
 	std::vector<character*> v = f->constructFloorSpecial(file, pc);
 	cout << "past here" << endl;
@@ -100,19 +93,13 @@ string Game::playGame1(string file) {
 		enemies[k] = v[k];
 	}
 
-//	f->spawnPC(pc);
-
-//	dragons = f->spawnItem(10, 10);  //spawns items and puts dragons into dragon array
-//	this->numDrag = dragons.size();
-//	enemies = f->spawnEnemy(this->numEnemies-numDrag); // take in a number
-	
 	cells = f->getCells();
 
 	f->printFloor();
 
-	for(int i = 0; i<numEnemies; i++){
+//	for(int i = 0; i<numEnemies; i++){
 		//cout << enemies[i]->getSymbol() << endl;
-	}
+//	}
 	cout << "starting" << endl;
 
 	cout << "pc's coordinates: " << pc->getXpos()
@@ -121,12 +108,9 @@ string Game::playGame1(string file) {
 	string cmd;
 	string dir;
 	bool climbedStairs = false;
-	//bool invInput = false;
 
 	cout << "starting PC HP: " << pc->getHP() << endl;
 	cout << "choose a command" << endl;
-
-	//bool playing = true;
 
 	while(true) {
 
@@ -205,12 +189,8 @@ string Game::playGame1(string file) {
 		if(false){
 			numDrag = dragons.size();
 		}
-		//cout << numDrag << endl;
-
 
 		for(int i = 0; i < numEnemies-numDrag; i++) {
-			//cout << i << endl;
-			//cout << "checking enemies' aggros" << endl;
 			if (!enemies[i]->isDead() && enemies[i]->isAggro(f)) {
 				cout << enemies[i]->getSymbol() << " attacked" << endl;
 				srand(time(0));
@@ -229,9 +209,7 @@ string Game::playGame1(string file) {
 			}	
 		}
 		for(int i = 0; i < numDrag; i++) {
-			//cout << i << endl;
-		//	cout << dragons[i]->getSymbol() << endl;
-			//cout << dragons[i]->getAtk() << endl;
+		
 			if (!dragons[i]->isDead() && dragons[i]->isAggro(f)) {
 
 				cout << dragons[i]->getSymbol() << " attacked" << endl;
@@ -246,10 +224,6 @@ string Game::playGame1(string file) {
 		}
 		moveEnemies();
 		
-		
-	//	cout << "pc's coordinates: " << pc->getXpos()
-	//	  << pc->getYpos() << endl;
-
 		f->printFloor();	
 
 		cout << "Gold: " << pc->getGold();
@@ -373,14 +347,13 @@ string Game::playGame2(string file) {
 			if(climbedStairs){
 				return "next level";
 			}
-			//cout << "pc moved" << endl;	
+			
 		}
 		// aggros are automatically set
 		numDrag = dragons.size();
-		//cout << numDrag << endl;
+		
 		for(int i = 0; i < numEnemies-numDrag; i++) {
-			//cout << i << endl;
-			//cout << "checking enemies' aggros" << endl;
+		
 			if (!enemies[i]->isDead() && enemies[i]->isAggro(f)) {
 				cout << enemies[i]->getSymbol() << " attacked" << endl;
 				srand(time(0));
@@ -399,9 +372,7 @@ string Game::playGame2(string file) {
 			}	
 		}
 		for(int i = 0; i < numDrag; i++) {
-			//cout << i << endl;
-			//cout << dragons[i]->getSymbol() << endl;
-			//cout << dragons[i]->getAtk() << endl;
+		
 			if (!dragons[i]->isDead() && dragons[i]->isAggro(f)) {
 				srand(time(0));
 				int atkChance = rand()%2;
@@ -425,9 +396,6 @@ string Game::playGame2(string file) {
 		}
 		moveEnemies();
 		
-		
-	//	cout << "pc's coordinates: " << pc->getXpos()
-	//	  << pc->getYpos() << endl;
 
 		f->printFloor();	
 
@@ -476,66 +444,48 @@ void Game::moveEnemies(){
 
 bool Game::movePC(string move){
 	cout << endl;
-	//bool valid = false;
-	//string move;
+
 	int newx = -1;
 	int newy = -1;
 
 	int width = f->getWidth();
 	int height = f->getHeight();
 
-	//while(!valid){
-		//cin >> move;
-
-	//	cout << "checking if valid move" << endl;
-		//cout << "direction inputed correctly" << endl;
 		if(move == "no"){
 			newy = pc->getYpos() - 1;
 			newx = pc->getXpos();
-	//	cout << "north direction inputed correctly" << endl;
 		} else if (move == "so") {
 			newy = pc->getYpos() + 1;
 			newx = pc->getXpos();
-	//	cout << "south direction inputed correctly" << endl;
 		} else if (move == "ea") {
 				newx = pc->getXpos() + 1;
 				newy = pc->getYpos();
-	//	cout << "east direction inputed correctly" << endl;
 		} else if (move == "we"){
 				newx = pc->getXpos() - 1;
 				newy = pc->getYpos();
-	//	cout << "west direction inputed correctly" << endl;
 		} else if (move ==  "ne"){
 				newx = pc->getXpos() + 1;
 				newy = pc->getYpos() - 1;
-	//	cout << "northeast direction inputed correctly" << endl;
 		} else if (move ==  "nw"){
 				newx = pc->getXpos() - 1;
 				newy = pc->getYpos() - 1;
-	//	cout << "northwest direction inputed correctly" << endl;
 		} else if (move ==  "se") {
 				newx = pc->getXpos() + 1;
 				newy = pc->getYpos() + 1;
-	//	cout << "southeast direction inputed correctly" << endl;
 		} else if (move ==  "sw") {
 				newx = pc->getXpos() - 1;
 				newy = pc->getYpos() + 1;
-	//	cout << "southwest direction inputed correctly" << endl;
 		} else {
 
 	//		cout << "failed" << endl;
 		}
 
 		if (f->PCWalkable(newx, newy) == "free") {
-			//cout << "PCWalkable returned true" << endl;
 			pc->move(f, newx, newy);
 		}
 		else if (f->PCWalkable(newx, newy) == "gold") {
-			//cout << this->cells[newx][newy]->getAbove()->getGold() << endl;
 			if (this->cells[newx][newy]->getAbove()->getGold() == 6) {
-				//cout << "yas" << endl;
 				if (this->cells[newx][newy]->getAbove()->getCanPickUp()) {
-					//cout << "yasss" << endl;
 					pc = pc->use(cells[newx][newy]->getAbove());
 					pc->move(f, newx, newy);
 				}

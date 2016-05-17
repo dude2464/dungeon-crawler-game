@@ -1,11 +1,10 @@
 #include "Cell.h"
-//class character;
 #include "character.h"
 
 Cell::Cell(): filled(false){ }
 
 char Cell::getSymbol(){
-	//std::cout << "getSymbol called from Cell class" << std::endl;
+	// getSymbol called from Cell class
 	return this->symbol;
 }
 

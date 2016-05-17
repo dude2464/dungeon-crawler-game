@@ -71,11 +71,11 @@ void Floor::constructFloor(string source){
 	string c;
 	for(int j = 0; j<height; j++){
 		getline(f, line);
-		//cout << "read line: " << line << endl;
+		// read line: 
 		for (int i = 0; i <width; i++)	{
 			c = line.substr(i, 1);
 
-		//	cout << "read character: " << c << endl;
+		// read character: 
 			if(c == "#"){
 				cells[i][j] = new Passage(i, j);
 			} else if(c == "."){
@@ -94,23 +94,22 @@ void Floor::constructFloor(string source){
 }
 
 void Floor::makeChambers(){
-	//cout << "making chambers" << endl;
+	// making chambers;
 	bool firstFound;
 	int x;
 	int y;
 
 	for(int i = 0; i<numChambers; i++){
 		firstFound = false;
-	//	cout << "making chamber " << i << endl;
+	//	making chamber 
 		x = 1;
 		y = 1;
 		while(!firstFound){
 			if(cells[x][y] != NULL && cells[x][y]->getSymbol() == '.' && !cells[x][y]->isFilled()){
-	//			cout << "first cell found at " << x << " " << y << endl;
+	//			cout << "first cell found at (x,y) << endl;
 				firstFound = true;
 			} else {
 				x++;
-				//y++;
 				if(x == this->width){
 					x = 1;
 					y++;
@@ -120,27 +119,23 @@ void Floor::makeChambers(){
 				}
 			}
 		}
-	//	cout << "making first linkedList" << endl;
+	//	making first linkedList
 		llist[i] = new linkedList(cells[x][y]);
-	//	cout << "starting flood fill" << endl;
+	
 		floodFill(x, y, i); 
-	//	cout << "finished flood" << endl;
 	}
 
-	//cout << "linkedList sizes" << endl;
 	
 	for(int i = 0; i<numChambers; i++){
 		linkedList* current = llist[i];
-		//cout << llist[i]->getSize() <<endl;
 		int lsize = llist[i]->getSize();
-	//	cout << "making cell array" << endl;
 		Cell** c = new Cell* [lsize];
 		for(int j = 0; j<lsize; j++){
 
 			c[j] = current->getCell();
 			current = current->getNext();
 		}
-	//	cout << "filled cell array" << endl;
+	//	filled cell array
 		chambers[i] = new Chamber(c, lsize, this->cells);
 	}
 }
@@ -162,11 +157,9 @@ vector<character*> Floor::constructFloorSpecial(string source, character* pc){
 
 	for(int j = 0; j<height; j++){
 		getline(f, line);
-		//cout << "read line: " << line << endl;
 		for (int i = 0; i <width; i++)	{
 			c = line.substr(i, 1);
 
-		//	cout << "read character: " << c << endl;
 			if(c == "#"){
 				cells[i][j] = new Passage(i, j);
 			} else if(c == "."){
@@ -235,10 +228,8 @@ vector<character*> Floor::constructFloorSpecial(string source, character* pc){
 				cells[i][j]->addAbove(new smallHoard());
 			} else if(c == "8"){
 				cells[i][j] = new FloorTile(i, j);
-			//	cells[i][j]->addAbove(new rh());
 			} else if(c == "9"){
 				cells[i][j] = new FloorTile(i, j);
-			//	cells[i][j]->addAbove(new ba());
 			} else if(c == "\\"){
 				cells[i][j] = new FloorTile(i, j);
 				cells[i][j]->addAbove(new stairs());
@@ -250,19 +241,14 @@ vector<character*> Floor::constructFloorSpecial(string source, character* pc){
 		}
 	}
 
-//	character **enemies = new character* [es];
-//	for(int k = 0; k<es; k++){
-//		enemies[k] = v[k];
-//	}
 	this->makeChambers();
 	return v;
 
-	
 }
 
 
 character** Floor::spawnEnemy(int numEnemies){
-	//int numEnemies =20;
+	
 	character **enemies = new character* [numEnemies]; 
 	int c;
 	int monster;
@@ -342,25 +328,18 @@ vector<character*> Floor::spawnItem(int numPotions, int numGold){
 		item = rand()%6;
 		c = rand()%5;
 		if(item < 1){
-	//		cout << "spawning potion" << endl;
 			chambers[c]->spawnItem(new ba());
 		} else if(item < 2){
-	//		cout << "spawning potion" << endl;
 			chambers[c]->spawnItem(new bd());
 		} else if(item < 3){
-	//		cout << "spawning potion" << endl;
 			chambers[c]->spawnItem(new wa());
 		} else if(item < 4){
-	//		cout << "spawning potion" << endl;
 			chambers[c]->spawnItem(new wd());
 		} else if(item < 5){
-	//		cout << "spawning potion" << endl;
 			chambers[c]->spawnItem(new ph());
 		} else if(item < 6){
-	//		cout << "spawning potion" << endl;
 			chambers[c]->spawnItem(new rh());
 		} 
-	//	cout << "spawned potion" << endl; 
 	}
 
 vector<character*> dragons;
@@ -369,13 +348,10 @@ vector<character*> dragons;
 		item = rand()%8;
 		c = rand()%5;
 		if(item < 5){
-			//cout << "spawning gold" << endl;
 			chambers[c]->spawnItem(new normalGold());
 		} else if(item < 7){
-			//cout << "spawning gold" << endl;
 			chambers[c]->spawnItem(new smallHoard());
 		} else if(item < 8) {
-			//cout << "spawned dragon gold" << endl;
 			Gold* dh = new dragonHorde();
 			chambers[c]->spawnItem(dh);
 			int dxpos = dh->getXpos();
@@ -399,24 +375,20 @@ int Floor::getHeight(){
 void Floor::move(character* c, int newx, int newy){
 	int oldx = c->getXpos();
 	int oldy = c->getYpos();
-	//cout << "got X and Y pos: " << oldx << " " << oldy << endl;
-	//cout << "New X and Y pos: " << newx << " " << newy << endl;
 	cells[newx][newy]->addAbove(c);
-	//cout << "copied pc to new cell" <<endl;
+	// copied pc to new cell
 	cells[oldx][oldy]->addAbove(NULL);
-	//cout << "removed pc from old cell" << endl;
+	// removed pc from old cell
 }
 
 string Floor::PCWalkable(int newx, int newy){
-	//cout << "newx is: " << newx << endl;
-	//cout << "newy is: " << newy << endl;
 	
 	if(newx >= 0 && newx < this->width && 
 		newy >= 0 && newy < this->height ) {
-	//	cout << "target cell is within board" << endl;
+	//	target cell is within board
 		if(cells[newx][newy] != NULL && cells[newx][newy]->walkable()){
 			if(!cells[newx][newy]->isOccupied()) {
-	//		cout << "valid target cell" << endl;
+	//		valid target cell
 			return "free";
 			} else if (this->cells[newx][newy]->getAbove()->getSubclass() == "gold"){
 
@@ -435,12 +407,12 @@ string Floor::PCWalkable(int newx, int newy){
 bool Floor::enemyWalkable(int newx, int newy){
 	if(newx >= 0 && newx < this->width && 
 		newy >= 0 && newy < this->height ) {
-		//cout << "target cell is within board" << endl;
+		//target cell is within board
 		if(cells[newx][newy] != NULL &&
 			cells[newx][newy]->walkable() && 
 			cells[newx][newy]->enemyCanWalk() &&
 			!cells[newx][newy]->isOccupied()) {
-		//	cout << "valid target cell" << endl;
+		//	valid target cell
 			return true;
 		}
 		return false;
@@ -501,7 +473,6 @@ string Floor::whatIsHere(int xpos, int ypos, string dir) {
 
 
 bool Floor::PCInRange(int xpos, int ypos) {
-	//cout << "in Floor->PCInRange method" << endl;
 	int newx;
 	int newy;
 	for (int y = -1; y < 2; y++) {
@@ -525,20 +496,12 @@ Cell*** Floor::getCells(){
 
 void Floor::floodFill(int x, int y, int chamberNum){
 	if(cells[x][y] != NULL && cells[x][y]->getSymbol() == '.' && !cells[x][y]->isFilled()){
-	//	cout << "pushing cell to llist" << endl;
 		llist[chamberNum]->pushCell(cells[x][y]);
-	//	cout << "pushed cell" << endl;
-	//	cout << "calling fill()" << endl;
 		cells[x][y]->fill();
-	//	cout << "filled cell" << endl;
-
-	//	cout << "calling floodFill with: " << x-1 << " " << y << endl;
+	
 		floodFill(x-1, y, chamberNum);
-	//	cout << "calling floodFill with: " << x << " " << y-1 << endl;
 		floodFill(x, y-1, chamberNum);
-	//	cout << "calling floodFill with: " << x+1 << " " << y << endl;
 		floodFill(x+1, y, chamberNum);
-	//	cout << "calling floodFill with: " << x << " " << y+1 << endl;
 		floodFill(x, y+1, chamberNum);
 
 	} else {

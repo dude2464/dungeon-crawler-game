@@ -69,69 +69,9 @@ int PC::dirOnY(string dir) {
 
 
 void PC::move(Floor *f, int x, int y){
-/*	bool valid = false;
-	string move;
-	int newx = -1;
-	int newy = -1;
 
-	int width = f->getWidth();
-	int height = f->getHeight();
-
-	while(!valid){
-		cin >> move;
-
-		cout << "checking if valid move" << endl;
-		//cout << "direction inputed correctly" << endl;
-		if(move == "no"){
-			newy = this->ypos - 1;
-			newx = this->xpos;
-		cout << "north direction inputed correctly" << endl;
-		} else if (move == "so") {
-			newy = this->ypos + 1;
-			newx = this->xpos;
-		cout << "south direction inputed correctly" << endl;
-		} else if (move == "ea") {
-				newx = this->xpos + 1;
-				newy = this->ypos;
-		cout << "east direction inputed correctly" << endl;
-		} else if (move == "we"){
-				newx = this->xpos - 1;
-				newy = this->ypos;
-		cout << "west direction inputed correctly" << endl;
-		} else if (move ==  "ne"){
-				newx = this->xpos + 1;
-				newy = this->ypos - 1;
-		cout << "northeast direction inputed correctly" << endl;
-		} else if (move ==  "nw"){
-				newx = this->xpos - 1;
-				newy = this->ypos - 1;
-		cout << "northwest direction inputed correctly" << endl;
-		} else if (move ==  "se") {
-				newx = this->xpos + 1;
-				newy = this->ypos + 1;
-		cout << "southeast direction inputed correctly" << endl;
-		} else if (move ==  "sw") {
-				newx = this->xpos - 1;
-				newy = this->ypos + 1;
-		cout << "southwest direction inputed correctly" << endl;
-		} else {
-
-			cout << "failed" << endl;
-		}
-*/
-	//	if (f->PCWalkable(newx, newy)) {
-		//cout << "in PC move" << endl;
 			f->move(this, x, y);
-	//		valid = true;
-			// might want to take out this part
-	//		this->xpos = newx;
-	//		this->ypos = newy;
-	//	} else {
-	//		newx = -1;
-	//		newy = -1;
-	//	}
-///
-	//}
+	
 }
 
 character* PC::use(character* c){

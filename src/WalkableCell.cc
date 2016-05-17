@@ -24,25 +24,15 @@ bool WalkableCell::isOccupied(){
 }
 
 void WalkableCell::addAbove(character* a){
-	//std::cout << "adding above in WalkableCell class" << std::endl;
+	// adding above in WalkableCell class
 	this->above = a;
-	//std::cout << "Aadded something to above in WalkableCell" << std::endl;
 	if(a != NULL){ 
-	//	std::cout << "setting coordinates of " << std::endl;
-	//	std::cout << a->getSymbol() << std::endl;
 		a->setXpos(this->xpos);
 		a->setYpos(this->ypos);
-	//	std::cout << "coordinates set" << std::endl;
 	} else {
-	//	std::cout << "above was NULL" << std::endl;
 	}
 }
 
 character* WalkableCell::getAbove(){
 	return above;
 }
-
-
-//WalkableCell::~WalkableCell(){
-//	delete above;
-//}

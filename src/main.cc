@@ -1,9 +1,6 @@
 #include "Floor.h"
 #include "Chamber.h"
 #include "Cell.h"
-//#include "NonWalkable.h"
-//#include "Wall.h"
-//#include "Walkbale.h"
 #include "character.h"
 #include "playableCharacter.h"
 #include "Passage.h"
@@ -12,9 +9,6 @@
 #include "Floor.h"
 #include "Chamber.h"
 #include "Cell.h"
-//#include "NonWalkable.h"
-//#include "Wall.h"
-//#include "Walkbale.h"
 #include "character.h"
 #include "playableCharacter.h"
 #include "Passage.h"
@@ -110,31 +104,3 @@ int main(int argc, char *argv[]) {
 		}
 	}
 }
-
-/*	f->constructFloor("defaultFloor.txt");
-
-	f->printFloor();
-
-//	for(int i = 0; i<5; i++){
-//		f->getChamber(i)->spawnEnemy();
-//
-//		cout << "After Spawn: " << endl;
-//		f->printFloor();
-//	}
-
-	f->spawnPC(pc);	
-	f->spawnEnemy();
-	f->printFloor();
-
-	cout << "pc's coordinaates: " << pc->getXpos()
-	  << " " << pc->getYpos() << endl;
-
-	while(true){
-	cout << "choose a direction to move" << endl;
-	pc->move(f);
-	f->printFloor();
-	cout << "pc's coordinaates: " << pc->getXpos()
-	  << pc->getYpos() << endl;
-
-	}
-*/

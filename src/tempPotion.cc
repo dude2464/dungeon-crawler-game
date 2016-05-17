@@ -29,11 +29,9 @@ int tempPotion::getAtk(){
 
 int tempPotion::getHP() {
 	if(ch != NULL){
-	//	std::cout << "get here:" << std::endl;
-	//	std::cout << "ch->getHP returned: " << ch->getHP() << std::endl;
+
 		return this->HP + ch->getHP();
 	}
-	//std::cout << "here instead" << std::endl;
 	return character::getHP();
 }
 
@@ -55,7 +53,6 @@ void tempPotion::setXpos(int x){
 	if(ch != NULL){
 		ch->setXpos(x);
 	} else {
-		//this->xpos = x;
 		character::setXpos(x);
 	}
 }
@@ -63,7 +60,6 @@ void tempPotion::setYpos(int y){
 	if(ch != NULL){
 		ch->setYpos(y);
 	} else {
-		//this->ypos = y;
 		character::setYpos(y);
 	}
 }
@@ -103,13 +99,10 @@ void tempPotion::addGold(int val){
 	}
 }
 char tempPotion::getSymbol(){
-	//std::cout << "in tempPotion getSymbol function" << std::endl;
 	if(ch != NULL){
-	//	std::cout << "going into ch pointer" << std::endl;
 		return ch->getSymbol();
 	}
-	//std::cout << "getting this->symbol" << std::endl;
-	//return this->symbol;
+
 	return character::getSymbol();
 }
 void tempPotion::move(Floor *f, int x, int y){
@@ -152,10 +145,8 @@ bool tempPotion::isAggro(Floor *f){
 }
 character* tempPotion::use(character* c){
 	if(ch != NULL){
-	//	std::cout << "using ch's use" << std::endl;
 		ch = ch->use(c);
 	} else {
-	//	std::cout << "setting ch = c" << std::endl;
 		ch = c;	
 	}
 	return this;
